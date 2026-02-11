@@ -1,6 +1,7 @@
-// Python Interpreter using Pyodide
+// Python Interpreter using Pyodide and Monaco Editor
 let pyodide = null;
 let isInitialized = false;
+let editor = null;
 
 // Initialize Pyodide
 async function initializePyodide() {
@@ -65,13 +66,13 @@ async function runPythonCode() {
         await initializePyodide();
     }
     
-    const codeEditor = document.getElementById('codeEditor');
     const output = document.getElementById('output');
     const statusText = document.getElementById('statusText');
     const statusDot = document.querySelector('.status-dot');
     const runBtn = document.getElementById('runBtn');
     
-    const code = codeEditor.value.trim();
+    if (!editor) return;
+    const code = editor.getValue().trim();
     
     if (!code) {
         showOutput('Please enter some Python code to run.', 'error');
@@ -149,44 +150,68 @@ function showOutput(text, type = 'success') {
 
 // Clear editor
 function clearEditor() {
-    const codeEditor = document.getElementById('codeEditor');
-    codeEditor.value = '';
-    codeEditor.focus();
+    if (editor) {
+        editor.setValue('');
+        editor.focus();
+    }
 }
 
 // Load example code
 function loadExample(code) {
-    const codeEditor = document.getElementById('codeEditor');
-    codeEditor.value = code;
-    codeEditor.focus();
-    
-    // Scroll to editor
-    codeEditor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (editor) {
+        editor.setValue(code);
+        editor.focus();
+        
+        // Scroll to editor (if needed, though Monaco usually handles its own focus well)
+        document.getElementById('monaco-editor-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+// Initialize Monaco Editor
+function initializeMonaco() {
+    require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' }});
+
+    require(['vs/editor/editor.main'], function() {
+        editor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
+            value: `# Write your Python code here...
+# Example:
+print('Hello, La Communauté!')
+for i in range(5):
+    print(f'Number: {i}')`,
+            language: 'python',
+            theme: 'vs-dark',
+            automaticLayout: true,
+            minimap: { enabled: false },
+            fontSize: 14,
+            fontFamily: "'JetBrains Mono', 'Courier New', monospace",
+            scrollBeyondLastLine: false,
+            renderWhitespace: 'selection',
+        });
+
+        // Add keyboard shortcut for Run (Ctrl+Enter or Cmd+Enter)
+        editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function() {
+            runPythonCode();
+        });
+    });
 }
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     const runBtn = document.getElementById('runBtn');
     const clearBtn = document.getElementById('clearBtn');
-    const codeEditor = document.getElementById('codeEditor');
     const exampleCards = document.querySelectorAll('.example-card');
     
     // Initialize Pyodide on page load
     initializePyodide();
+    
+    // Initialize Monaco
+    initializeMonaco();
     
     // Run button
     runBtn.addEventListener('click', runPythonCode);
     
     // Clear button
     clearBtn.addEventListener('click', clearEditor);
-    
-    // Keyboard shortcut: Ctrl+Enter or Cmd+Enter to run
-    codeEditor.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-            e.preventDefault();
-            runPythonCode();
-        }
-    });
     
     // Example cards
     exampleCards.forEach(card => {
@@ -195,12 +220,9 @@ document.addEventListener('DOMContentLoaded', () => {
             loadExample(code);
         });
     });
-    
-    // Focus editor on load
-    codeEditor.focus();
 });
 
-// Handle page visibility to reinitialize if needed
+// Handle page visibility to reinitialize if needed (mainly for Pyodide)
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden && !isInitialized) {
         initializePyodide();
