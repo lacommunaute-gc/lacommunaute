@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanford nunchi vacchina ethical hackers - Python Interpreter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="interpreter.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor: pointer;">La Communauté</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#subgroups">Subgroups</a></li>
+                <li><a href="index.html#members">Members</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="interpreter-header">
+        <div class="container">
+            <h1 class="hero-title">Stanford nunchi vacchina ethical hackers</h1>
+            <p class="hero-subtitle">Python Interpreter - Run Python Code in Real-Time</p>
+            <div class="hero-description">
+                <p>Write, decode, and execute Python code directly in your browser. Powered by Pyodide.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Python Interpreter Section -->
+    <section class="interpreter-section">
+        <div class="container">
+            <div class="interpreter-container">
+                <!-- Code Editor -->
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">📝 Python Code Editor</span>
+                        <div class="panel-actions">
+                            <button class="btn btn-secondary" id="clearBtn">Clear</button>
+                            <button class="btn btn-primary" id="runBtn">
+                                <span class="btn-icon">▶</span> Run Code
+                            </button>
+                        </div>
+                    </div>
+                    <textarea id="codeEditor" class="code-editor" placeholder="# Write your Python code here...
+# Example:
+print('Hello, La Communauté!')
+for i in range(5):
+    print(f'Number: {i}')"></textarea>
+                </div>
+
+                <!-- Output Panel -->
+                <div class="output-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">📊 Output</span>
+                        <div class="status-indicator" id="statusIndicator">
+                            <span class="status-dot"></span>
+                            <span id="statusText">Ready</span>
+                        </div>
+                    </div>
+                    <div id="output" class="output-content">
+                        <div class="output-placeholder">
+                            <p>Output will appear here after running your code...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Code Snippets -->
+            <div class="examples-section">
+                <h3 class="examples-title">💡 Quick Examples</h3>
+                <div class="examples-grid">
+                    <div class="example-card" data-code="print('Hello from La Communauté!')">
+                        <div class="example-icon">👋</div>
+                        <h4>Hello World</h4>
+                        <p>Basic print statement</p>
+                    </div>
+                    <div class="example-card" data-code="numbers = [1, 2, 3, 4, 5]
+squared = [x**2 for x in numbers]
+print(f'Original: {numbers}')
+print(f'Squared: {squared}')">
+                        <div class="example-icon">🔢</div>
+                        <h4>List Comprehension</h4>
+                        <p>Square numbers in a list</p>
+                    </div>
+                    <div class="example-card" data-code="def fibonacci(n):
+    a, b = 0, 1
+    result = []
+    for _ in range(n):
+        result.append(a)
+        a, b = b, a + b
+    return result
+
+print(fibonacci(10))">
+                        <div class="example-icon">🌀</div>
+                        <h4>Fibonacci Sequence</h4>
+                        <p>Generate Fibonacci numbers</p>
+                    </div>
+                    <div class="example-card" data-code="import json
+
+data = {
+    'group': 'La Communauté',
+    'members': 12,
+    'subgroups': 7
+}
+print(json.dumps(data, indent=2))">
+                        <div class="example-icon">📦</div>
+                        <h4>JSON Handling</h4>
+                        <p>Work with JSON data</p>
+                    </div>
+                    <div class="example-card" data-code="text = 'Stanford nunchi vacchina ethical hackers'
+words = text.split()
+reversed_text = ' '.join(reversed(words))
+print(f'Original: {text}')
+print(f'Reversed: {reversed_text}')">
+                        <div class="example-icon">🔄</div>
+                        <h4>String Manipulation</h4>
+                        <p>Reverse word order</p>
+                    </div>
+                    <div class="example-card" data-code="members = ['Aneesh', 'Nikit', 'Ayaan', 'Krishna', 'Arya', 'Srinadh', 'Shanmukh', 'Chaitanya', 'Rohit', 'Sampath', 'Elvin', 'Hasit']
+print(f'Total members: {len(members)}')
+for i, member in enumerate(members, 1):
+    print(f'{i}. {member}')">
+                        <div class="example-icon">👥</div>
+                        <h4>La Communauté Members</h4>
+                        <p>List all community members</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 La Communauté. All rights reserved.</p>
+            <p class="footer-tagline">A Group That Enjoys Life ✨</p>
+        </div>
+    </footer>
+
+    <script src="interpreter.js"></script>
+</body>
+</html>
+
