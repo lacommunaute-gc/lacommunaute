@@ -1,9 +1,9 @@
 /* Interpreter Page Specific Styles */
 .interpreter-header {
-    padding: 120px 20px 60px;
+    padding: 100px 20px 40px;
     text-align: center;
     background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
 }
 
 .interpreter-section {
@@ -13,9 +13,11 @@
 
 .interpreter-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-bottom: 4rem;
+    grid-template-columns: 3fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    height: calc(100vh - 180px);
+    /* Fill most of the viewport height */
 }
 
 .editor-panel,
@@ -26,7 +28,8 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 600px;
+    height: 100%;
+    /* Fill container height */
 }
 
 .panel-header {
@@ -165,9 +168,12 @@
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.5;
     }
@@ -240,7 +246,9 @@
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Responsive Design */
@@ -271,4 +279,3 @@
         grid-template-columns: 1fr;
     }
 }
-
