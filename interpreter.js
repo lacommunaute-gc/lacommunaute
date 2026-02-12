@@ -161,7 +161,7 @@ async function runCCode() {
     output.innerHTML = '';
 
     // Update status
-    statusText.textContent = 'Compiling & Running C...';
+    statusText.textContent = 'Running C...';
     statusDot.classList.add('running');
     runBtn.disabled = true;
     runBtn.innerHTML = '<span class="loading"></span> Running...';
@@ -177,14 +177,26 @@ async function runCCode() {
             }
         };
 
+        // Check if JSCPP is loaded
+        if (typeof JSCPP === 'undefined') {
+            throw new Error('C Interpreter (JSCPP) not loaded. Please refresh the page.');
+        }
+
         // Use JSCPP to run the code
-        JSCPP.run(code, "", config);
+        // JSCPP.run(code, input, config)
+        const exitCode = JSCPP.run(code, "", config);
 
         // Display output
         if (outputBuffer) {
             showOutput(outputBuffer, 'success');
         } else {
             showOutput('Code executed successfully (no output)', 'success');
+        }
+
+        if (exitCode !== undefined && exitCode !== 0) {
+            showOutput(`\nProcess finished with exit code ${exitCode}`, 'error');
+        } else {
+            showOutput(`\nProcess finished with exit code 0`, 'success');
         }
 
         statusText.textContent = 'Ready';

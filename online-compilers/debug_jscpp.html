@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JSCPP Debug</title>
+    <!-- Try different CDNs or the one we are using -->
+    <script src="https://cdn.jsdelivr.net/npm/JSCPP@2.0.9/dist/jscpp.es5.min.js"></script>
+</head>
+
+<body>
+    <h1>JSCPP Debug</h1>
+    <pre id="output"></pre>
+    <script>
+        function log(msg) {
+            document.getElementById('output').textContent += msg + '\n';
+        }
+
+        window.onload = function () {
+            log('Window loaded');
+            if (typeof JSCPP === 'undefined') {
+                log('Error: JSCPP is undefined');
+                // Try to see if it's under a different name or if script failed
+            } else {
+                log('JSCPP is defined');
+                log('Type of JSCPP: ' + typeof JSCPP);
+
+                try {
+                    var code = '#include <stdio.h>\nint main() { printf("Hello form C"); return 0; }';
+                    var output = "";
+                    var config = {
+                        stdio: {
+                            write: function (s) {
+                                output += s;
+                            }
+                        }
+                    };
+
+                    // Try usage based on docs: JSCPP.run(code, input, config)
+                    log('Attempting JSCPP.run()...');
+                    JSCPP.run(code, "", config);
+                    log('Output: ' + output);
+                } catch (e) {
+                    log('Error running JSCPP: ' + e);
+                    console.error(e);
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

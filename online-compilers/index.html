@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stanford nunchi vacchina ethical hackers - Python Interpreter</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../interpreter.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/JSCPP@2.0.9/JSCPP.es5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+    <style>
+        #monaco-editor-container {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand" onclick="window.location.href='/'" style="cursor: pointer;">La Communauté</div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#subgroups">Subgroups</a></li>
+                <li><a href="/#members">Members</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="interpreter-header">
+        <div class="container">
+            <h1 class="hero-title">Stanford nunchi vacchina ethical hackers</h1>
+            <p class="hero-subtitle">Code Interpreter - Run Python & C Code in Real-Time</p>
+            <div class="hero-description">
+                <p>Write, decode, and execute code directly in your browser. Powered by Pyodide and JSCPP.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Python Interpreter Section -->
+    <section class="interpreter-section">
+        <div class="container">
+            <div class="interpreter-container">
+                <!-- Code Editor -->
+                <div class="editor-panel">
+                    <div class="panel-header">
+                        <div class="language-selector-container">
+                            <div class="language-switch-wrapper" id="languageSwitchWrapper">
+                                <div class="language-slider"></div>
+                                <div class="language-option active" data-lang="python">Python</div>
+                                <div class="language-option" data-lang="c">C (JSCPP)</div>
+                            </div>
+                        </div>
+                        <div class="panel-actions">
+                            <button class="btn btn-secondary" id="clearBtn">Clear</button>
+                            <button class="btn btn-primary" id="runBtn">
+                                <span class="btn-icon">▶</span> Run Code
+                            </button>
+                        </div>
+                    </div>
+                    <div id="monaco-editor-container"></div>
+                </div>
+
+                <!-- Output Panel -->
+                <div class="output-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">📊 Output</span>
+                        <div class="status-indicator" id="statusIndicator">
+                            <span class="status-dot"></span>
+                            <span id="statusText">Ready</span>
+                        </div>
+                    </div>
+                    <div id="output" class="output-content">
+                        <div class="output-placeholder">
+                            <p>Output will appear here after running your code...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Code Snippets -->
+            <div class="examples-section">
+                <h3 class="examples-title">💡 Quick Examples</h3>
+                <div class="examples-grid">
+                    <!-- Python Examples -->
+                    <div class="example-card" data-lang="python" data-code="print('Hello from La Communauté!')">
+                        <div class="example-icon">👋</div>
+                        <h4>Hello World</h4>
+                        <p>Basic print statement</p>
+                    </div>
+                    <div class="example-card" data-lang="python" data-code="numbers = [1, 2, 3, 4, 5]
+squared = [x**2 for x in numbers]
+print(f'Original: {numbers}')
+print(f'Squared: {squared}')">
+                        <div class="example-icon">🔢</div>
+                        <h4>List Comprehension</h4>
+                        <p>Square numbers in a list</p>
+                    </div>
+                    <div class="example-card" data-lang="python" data-code="def fibonacci(n):
+    a, b = 0, 1
+    result = []
+    for _ in range(n):
+        result.append(a)
+        a, b = b, a + b
+    return result
+
+print(fibonacci(10))">
+                        <div class="example-icon">🌀</div>
+                        <h4>Fibonacci Sequence</h4>
+                        <p>Generate Fibonacci numbers</p>
+                    </div>
+                    <div class="example-card" data-lang="python" data-code="import json
+
+data = {
+    'group': 'La Communauté',
+    'members': 12,
+    'subgroups': 7
+}
+print(json.dumps(data, indent=2))">
+                        <div class="example-icon">📦</div>
+                        <h4>JSON Handling</h4>
+                        <p>Work with JSON data</p>
+                    </div>
+                    <div class="example-card" data-lang="python" data-code="text = 'Stanford nunchi vacchina ethical hackers'
+words = text.split()
+reversed_text = ' '.join(reversed(words))
+print(f'Original: {text}')
+print(f'Reversed: {reversed_text}')">
+                        <div class="example-icon">🔄</div>
+                        <h4>String Manipulation</h4>
+                        <p>Reverse word order</p>
+                    </div>
+                    <div class="example-card" data-lang="python" data-code="members = ['Aneesh', 'Nikit', 'Ayaan', 'Krishna', 'Arya', 'Srinadh', 'Shanmukh', 'Chaitanya', 'Rohit', 'Sampath', 'Elvin', 'Hasit']
+print(f'Total members: {len(members)}')
+for i, member in enumerate(members, 1):
+    print(f'{i}. {member}')">
+                        <div class="example-icon">👥</div>
+                        <h4>La Communauté Members</h4>
+                        <p>List all community members</p>
+                    </div>
+
+                    <!-- C Examples -->
+                    <div class="example-card" data-lang="c" data-code="#include <stdio.h>
+
+int main() {
+    printf('Hello from La Communauté!\\n');
+    return 0;
+}" style="display: none;">
+                        <div class="example-icon">👋</div>
+                        <h4>Hello World (C)</h4>
+                        <p>Basic printf statement</p>
+                    </div>
+                    <div class="example-card" data-lang="c" data-code="#include <stdio.h>
+
+int main() {
+    int i;
+    for (i = 1; i <= 5; i++) {
+        printf('Number: %d\\n', i);
+    }
+    return 0;
+}" style="display: none;">
+                        <div class="example-icon">Hz</div>
+                        <h4>Loop (C)</h4>
+                        <p>For loop example</p>
+                    </div>
+                    <div class="example-card" data-lang="c" data-code="#include <stdio.h>
+
+int factorial(int n) {
+    if (n == 0) return 1;
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int num = 5;
+    printf('Factorial of %d is %d\\n', num, factorial(num));
+    return 0;
+}" style="display: none;">
+                        <div class="example-icon">!</div>
+                        <h4>Factorial (C)</h4>
+                        <p>Recursive function</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 La Communauté. All rights reserved.</p>
+            <p class="footer-tagline">A Group That Enjoys Life ✨</p>
+        </div>
+    </footer>
+
+    <script src="../interpreter.js"></script>
+</body>
+
+</html>
