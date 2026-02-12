@@ -342,9 +342,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clear button
     clearBtn.addEventListener('click', clearEditor);
 
-    // Language Selector
-    languageSelect.addEventListener('change', (e) => {
-        switchLanguage(e.target.value);
+    // Language Switcher Logic
+    const languageSwitchWrapper = document.getElementById('languageSwitchWrapper');
+    const languageOptions = document.querySelectorAll('.language-option');
+
+    languageOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const lang = option.getAttribute('data-lang');
+
+            // Update UI
+            languageOptions.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+
+            if (lang === 'c') {
+                languageSwitchWrapper.classList.add('c-active');
+            } else {
+                languageSwitchWrapper.classList.remove('c-active');
+            }
+
+            // Switch Language
+            switchLanguage(lang);
+        });
     });
 
     // Example cards

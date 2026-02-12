@@ -13,7 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/JSCPP@2.0.9/dist/jscpp.es5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/JSCPP@2.0.9/JSCPP.es5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
     <style>
         #monaco-editor-container {
@@ -57,10 +57,11 @@
                 <div class="editor-panel">
                     <div class="panel-header">
                         <div class="language-selector-container">
-                            <select id="languageSelect" class="language-select">
-                                <option value="python">🐍 Python</option>
-                                <option value="c">🔵 C (JSCPP)</option>
-                            </select>
+                            <div class="language-switch-wrapper" id="languageSwitchWrapper">
+                                <div class="language-slider"></div>
+                                <div class="language-option active" data-lang="python">Python</div>
+                                <div class="language-option" data-lang="c">C (JSCPP)</div>
+                            </div>
                         </div>
                         <div class="panel-actions">
                             <button class="btn btn-secondary" id="clearBtn">Clear</button>
