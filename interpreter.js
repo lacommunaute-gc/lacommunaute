@@ -178,13 +178,19 @@ async function runCCode() {
         };
 
         // Check if JSCPP is loaded
-        if (typeof JSCPP === 'undefined') {
-            throw new Error('C Interpreter (JSCPP) not loaded. Please refresh the page.');
+        let compiler = null;
+        if (typeof JSCPP !== 'undefined') {
+            compiler = JSCPP;
+        } else if (window.JSCPP) {
+            compiler = window.JSCPP;
+        } else {
+            console.error('JSCPP object is undefined. Script might not have loaded.');
+            throw new Error('C Interpreter library failed to load. Please check your internet connection and refresh.');
         }
 
         // Use JSCPP to run the code
         // JSCPP.run(code, input, config)
-        const exitCode = JSCPP.run(code, "", config);
+        const exitCode = compiler.run(code, "", config);
 
         // Display output
         if (outputBuffer) {
