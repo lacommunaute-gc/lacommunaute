@@ -1,0 +1,118 @@
+/* Stanford Hackers Hub specific styles */
+
+.hub-header {
+    padding: 150px 20px 60px;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 60%);
+}
+
+.tools-section {
+    padding: 60px 20px 100px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tool-card {
+    background: var(--dark-card);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}
+
+.tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tool-card:hover::before {
+    transform: scaleX(1);
+}
+
+.tool-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    border-color: rgba(99, 102, 241, 0.5);
+}
+
+.tool-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    background: var(--dark-card);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.tool-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.tool-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Specific Tool Styles */
+.tool-card:nth-child(1)::before {
+    background: var(--gradient-3);
+}
+
+.tool-card:nth-child(2)::before {
+    background: var(--gradient-2);
+}
+
+.tool-card:nth-child(1):hover {
+    box-shadow: 0 20px 40px rgba(0, 242, 254, 0.2);
+    border-color: rgba(0, 242, 254, 0.5);
+}
+
+.tool-card:nth-child(2):hover {
+    box-shadow: 0 20px 40px rgba(245, 87, 108, 0.2);
+    border-color: rgba(245, 87, 108, 0.5);
+}
+
+.tool-card.placeholder {
+    opacity: 0.7;
+    cursor: not-allowed;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.tool-card.placeholder:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.tool-card.placeholder::before {
+    display: none;
+}

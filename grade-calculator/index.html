@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator - GITAM 2025-26</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand" style="cursor: pointer;" onclick="window.location.href='../index.html'">La Communauté
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../stanford-hackers/">Back to Hub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="calculator-container">
+        <!-- Header -->
+        <header class="calc-header">
+            <h1 class="calc-title">SGPA & CGPA Calculator</h1>
+            <p class="calc-subtitle">GITAM B.Tech CSE (2025-26 Onwards)</p>
+        </header>
+
+        <!-- Toggle section -->
+        <div class="toggle-container">
+            <button class="toggle-btn active" id="sgpa-calc-btn">SGPA Calculator</button>
+            <button class="toggle-btn" id="cgpa-calc-btn">CGPA Calculator</button>
+        </div>
+
+        <!-- SGPA Calculator Section -->
+        <div class="calc-section" id="sgpa-section">
+            <div class="courses-wrapper">
+                <div class="courses-header">
+                    <span>Course Name (Optional)</span>
+                    <span>Credits</span>
+                    <span>Grade</span>
+                    <span>Action</span>
+                </div>
+                <div id="course-rows">
+                    <!-- Default rows -->
+                    <div class="course-row">
+                        <input type="text" placeholder="Course 1" class="calc-input course-name">
+                        <input type="number" min="1" max="10" value="3" class="calc-input course-credits">
+                        <select class="calc-input course-grade">
+                            <option value="10">O (10)</option>
+                            <option value="9">A+ (9)</option>
+                            <option value="8">A (8)</option>
+                            <option value="7">B+ (7)</option>
+                            <option value="6">B (6)</option>
+                            <option value="5">C (5)</option>
+                            <option value="4">P (4)</option>
+                            <option value="0">F / Ab (0)</option>
+                        </select>
+                        <button class="delete-row-btn" onclick="removeRow(this)">×</button>
+                    </div>
+                    <div class="course-row">
+                        <input type="text" placeholder="Course 2" class="calc-input course-name">
+                        <input type="number" min="1" max="10" value="3" class="calc-input course-credits">
+                        <select class="calc-input course-grade">
+                            <option value="10">O (10)</option>
+                            <option value="9" selected>A+ (9)</option>
+                            <option value="8">A (8)</option>
+                            <option value="7">B+ (7)</option>
+                            <option value="6">B (6)</option>
+                            <option value="5">C (5)</option>
+                            <option value="4">P (4)</option>
+                            <option value="0">F / Ab (0)</option>
+                        </select>
+                        <button class="delete-row-btn" onclick="removeRow(this)">×</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-row-container">
+                <button class="add-row-btn" onclick="addRow()">+ Add Course</button>
+            </div>
+
+            <div class="calc-actions">
+                <button class="calculate-btn" onclick="calculateSGPA()">Calculate SGPA</button>
+            </div>
+
+            <div class="result-box" id="sgpa-result-box" style="display: none;">
+                <h3>Your SGPA</h3>
+                <div class="result-value" id="sgpa-value">0.00</div>
+                <p class="result-details" id="sgpa-details">Total Credits: 0 | Earned Points: 0</p>
+                <button class="use-for-cgpa-btn" onclick="useForCGPA()">Use this for CGPA</button>
+            </div>
+        </div>
+
+        <!-- CGPA Calculator Section -->
+        <div class="calc-section" id="cgpa-section" style="display: none;">
+            <div class="cgpa-inputs">
+                <div class="input-group">
+                    <label>Previous Total Credits</label>
+                    <input type="number" id="prev-credits" placeholder="e.g. 40" class="calc-input">
+                </div>
+                <div class="input-group">
+                    <label>Previous CGPA</label>
+                    <input type="number" id="prev-cgpa" placeholder="e.g. 8.5" step="0.01" class="calc-input">
+                </div>
+                <div class="input-group">
+                    <label>Current Sem Credits</label>
+                    <input type="number" id="curr-credits" placeholder="e.g. 20" class="calc-input">
+                </div>
+                <div class="input-group">
+                    <label>Current Sem SGPA</label>
+                    <input type="number" id="curr-sgpa" placeholder="e.g. 9.0" step="0.01" class="calc-input">
+                </div>
+            </div>
+
+            <div class="calc-actions">
+                <button class="calculate-btn" onclick="calculateCGPA()">Calculate CGPA</button>
+            </div>
+
+            <div class="result-box" id="cgpa-result-box" style="display: none;">
+                <h3>Your New CGPA</h3>
+                <div class="result-value" id="cgpa-value"
+                    style="background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    0.00</div>
+                <p class="result-details" id="cgpa-details">Total Credits: 0</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 50px;">
+        <div class="container">
+            <p>&copy; 2026 La Communauté. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

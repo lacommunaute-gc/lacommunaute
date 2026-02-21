@@ -1,0 +1,334 @@
+/* Grade Calculator Styles */
+
+.calculator-container {
+    max-width: 800px;
+    margin: 120px auto 40px;
+    padding: 20px;
+}
+
+.calc-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.calc-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.calc-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Toggle Buttons */
+.toggle-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background: var(--dark-card);
+    padding: 0.5rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.8rem 1.5rem;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.toggle-btn.active {
+    background: var(--gradient-1);
+    color: white;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.toggle-btn:hover:not(.active) {
+    color: var(--text-primary);
+}
+
+/* Calculator Sections */
+.calc-section {
+    background: var(--dark-card);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.4s ease;
+}
+
+/* Common Inputs */
+.calc-input {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.calc-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* SGPA Rows */
+.courses-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 50px;
+    gap: 1rem;
+    padding: 0 1rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.course-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 50px;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    animation: slideIn 0.3s ease;
+}
+
+.delete-row-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-row-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+.add-row-container {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.add-row-btn {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px dashed var(--primary-color);
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.add-row-btn:hover {
+    background: rgba(99, 102, 241, 0.1);
+}
+
+/* CGPA Inputs */
+.cgpa-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Action Buttons & Results */
+.calc-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.calculate-btn {
+    background: var(--gradient-1);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
+}
+
+.result-box {
+    margin-top: 2rem;
+    background: rgba(15, 23, 42, 0.6);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: slideUp 0.4s ease;
+}
+
+.result-box h3 {
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.result-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.result-details {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.use-for-cgpa-btn {
+    background: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.use-for-cgpa-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* Select Styling */
+select.calc-input {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23cbd5e1' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px) center;
+    background-size: 10px;
+    padding-right: 30px;
+}
+
+select.calc-input option {
+    background: var(--dark-card);
+    color: var(--text-primary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .courses-header {
+        display: none;
+    }
+
+    .course-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        background: rgba(15, 23, 42, 0.4);
+        padding: 1rem;
+        border-radius: 15px;
+        position: relative;
+    }
+
+    .delete-row-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+    }
+
+    .course-row input:first-child {
+        padding-right: 40px;
+    }
+
+    .cgpa-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .calc-title {
+        font-size: 2rem;
+    }
+}
